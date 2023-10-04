@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import org.apache.log4j.Logger;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,8 @@ import java.util.regex.Pattern;
 import static com.example.fxtest.Service.IngredientParser.*;
 
 public class VGSController {
+
+    private static final Logger log = Logger.getLogger(VGSController.class);
 
     List<Ingredient> ingredients = new ArrayList<>(); // Получите список ингредиентов
 
@@ -47,6 +50,7 @@ public class VGSController {
     }
 
     public String salad(){
+        log.info("Это информационное сообщение!");
         vsc = new VgSaladController(ingredients);
 
         Random random = new Random();
