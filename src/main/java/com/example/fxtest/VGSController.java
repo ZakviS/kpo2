@@ -1,7 +1,9 @@
 package com.example.fxtest;
 
 import com.example.fxtest.Service.VgSaladController;
+import com.example.fxtest.model.CaloriesCounterDecorator;
 import com.example.fxtest.model.Ingredient;
+import com.example.fxtest.model.Salad;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -21,7 +24,19 @@ import static com.example.fxtest.Service.IngredientParser.*;
 
 public class VGSController {
 
-    VgSaladController vsc = new VgSaladController();
+    List<Ingredient> ingredients = new ArrayList<>(); // Получите список ингредиентов
+
+    // Создайте салат
+    Salad salad = new VgSaladController(ingredients);
+
+    // Декорируйте салат с функциональностью подсчета калорий
+    Salad decoratedSalad = new CaloriesCounterDecorator(salad);
+
+    // Вызовите метод calculateCalories() для подсчета калорий
+    VgSaladController vsc = new VgSaladController(ingredients);
+
+
+    //    VgSaladController vsc = new VgSaladController();
     private static final Pattern pattern = Pattern.compile("Name: (.*), calories: (.*), weight: (.*)");
     @FXML
     private Label welcomeText;
@@ -32,7 +47,7 @@ public class VGSController {
     }
 
     public String salad(){
-        vsc = new VgSaladController();
+        vsc = new VgSaladController(ingredients);
 
         Random random = new Random();
         int weight;
@@ -45,7 +60,7 @@ public class VGSController {
 
         weight = random.nextInt(200);
         vsc.addTomato(weight);
-
+        System.out.println(decoratedSalad.calculateCalories());
         return vsc.printInfoString(vsc.getSalad());
 //        System.out.println("вывод через библиотеку");
 //        counter.counter((ArrayList<?>) vsc.getSalad());
@@ -315,7 +330,7 @@ public class VGSController {
                     }
                 }
             }
-            } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             // Обработка ошибок ввода/вывода
         }

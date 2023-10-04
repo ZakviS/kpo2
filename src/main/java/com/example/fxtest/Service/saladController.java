@@ -1,6 +1,7 @@
 package com.example.fxtest.Service;
 
 import com.example.fxtest.model.Ingredient;
+import com.example.fxtest.model.Salad;
 
 import java.io.*;
 import java.util.Collections;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public abstract class saladController {
 
-    public saladController(){}
+//    public saladController(){}
 
 
     public void printInfo(List<Ingredient> salad){

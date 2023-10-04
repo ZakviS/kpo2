@@ -17,9 +17,10 @@ public class IngredientParser {
 
     public static List<Ingredient> parseIngredientsFromString(String input) {
 
-        VgSaladController vsc = new VgSaladController();
 
         List<Ingredient> ingredients = new ArrayList<>();
+        VgSaladController vsc = new VgSaladController(ingredients);
+
         String[] lines = input.split("\n");
 
         for (String line : lines) {
