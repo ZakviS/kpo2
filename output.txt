@@ -1,0 +1,4 @@
+
+Name: Onion, calories: 27,2, weight: 68
+Name: Cucumber, calories: 22,2, weight: 139
+Name: Tomato, calories: 30,8, weight: 154

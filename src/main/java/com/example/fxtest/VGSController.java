@@ -1,5 +1,6 @@
 package com.example.fxtest;
 
+
 import com.example.fxtest.Service.VgSaladController;
 import com.example.fxtest.model.CaloriesCounterDecorator;
 import com.example.fxtest.model.Ingredient;
@@ -12,8 +13,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+//import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
-import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +31,9 @@ import static com.example.fxtest.Service.IngredientParser.*;
 
 public class VGSController {
 
-    private static final Logger log = Logger.getLogger(VGSController.class);
+    private static final Logger log = LoggerFactory.getLogger(VGSController.class);
+
+
 
     List<Ingredient> ingredients = new ArrayList<>(); // Получите список ингредиентов
 
@@ -65,6 +73,7 @@ public class VGSController {
         weight = random.nextInt(200);
         vsc.addTomato(weight);
         System.out.println(decoratedSalad.calculateCalories());
+        log.info("Это выведен салат: " + vsc.getSalad());
         return vsc.printInfoString(vsc.getSalad());
 //        System.out.println("вывод через библиотеку");
 //        counter.counter((ArrayList<?>) vsc.getSalad());
@@ -273,28 +282,17 @@ public class VGSController {
         System.out.println(infoString);
         List<Ingredient> salad = parseIngredientsFromString(infoString);
         writeIngredientsToBinaryFile(salad, "ingredients.dat");
+        log.info("Салат сохранен в бинарный файл:" + salad.toString());
+
     }
     @FXML
     protected void readBinarFileButtonClick() {
 //        Stage primaryStage = new Stage();
         List<Ingredient> loadedSalad = readIngredientsFromBinaryFile("ingredients.dat");
         welcomeText.setText(loadedSalad.toString());
-//        vsc = loadedSalad;
+        log.info("Салат из бинарного файла:" + loadedSalad.toString());
 
-//        primaryStage.setTitle("Выбор и чтение файла");
-//
-//        // Создаем кнопку для выбора файла
-//        Button chooseFileButton = new Button("Выбрать файл");
-//        chooseFileButton.setOnAction(e -> openAndReadFile(primaryStage));
-//
-//        // Создаем макет и добавляем кнопку
-//        VBox vBox = new VBox();
-//        vBox.getChildren().add(chooseFileButton);
-//
-//        Scene scene = new Scene(vBox, 300, 70);
-//        primaryStage.setScene(scene);
-//
-//        primaryStage.show();
+
     }
 
     private void openAndReadFile(Stage primaryStage) {
@@ -307,8 +305,10 @@ public class VGSController {
         if (selectedFile != null) {
             String fileContent = vsc.readFile((selectedFile));
             parseIngredientsFromFile(fileContent);
+            log.info("Салат взят из файла: " + fileContent);
 
         } else {
+            log.error("Файл не выбран." );
             System.out.println("Файл не выбран.");
         }
     }
@@ -335,6 +335,7 @@ public class VGSController {
                 }
             }
         } catch (Exception e) {
+            log.error(e.getMessage());
             e.printStackTrace();
             // Обработка ошибок ввода/вывода
         }

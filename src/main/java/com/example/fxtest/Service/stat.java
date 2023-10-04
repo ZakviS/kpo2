@@ -1,11 +1,17 @@
 package com.example.fxtest.Service;
 
+
 import com.example.fxtest.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.util.List;
 
 public class stat {
+private static final Logger log = LoggerFactory.getLogger(stat.class);
+
+
     static void AddOnion(int weight, ValidInsert vi, List<Ingredient> salad) {
         if (vi.searchName(salad,"Onion")){
             salad.get(vi.searchId(salad,"Onion")).setWeight(salad.get(vi.searchId(salad,"Onion")).getWeight() + weight);
@@ -15,6 +21,8 @@ public class stat {
             Onion onion = new Onion("Onion", weight, 0.4);
             salad.add(onion);
         }
+        log.info("добавлен лук с весом:" + weight);
+
     }
 
     static void AddCucumber(int weight, ValidInsert vi, List<Ingredient> salad) {
@@ -26,6 +34,8 @@ public class stat {
             Cucumber cucumber = new Cucumber("Cucumber", weight, 0.16);
             salad.add(cucumber);
         }
+        log.info("добавлен огурец с весом:" + weight);
+
     }
 
     static void AddTomato(int weight, ValidInsert vi, List<Ingredient> salad) {
@@ -37,6 +47,8 @@ public class stat {
             Tomato tomato = new Tomato("Tomato", weight, 0.2);
             salad.add(tomato);
         }
+        log.info("добавлен помидор с весом:" + weight);
+
     }
 
     static void AddChicken(int weight, ValidInsert vi, List<Ingredient> salad) {
