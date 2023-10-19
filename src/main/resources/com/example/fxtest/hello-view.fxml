@@ -13,14 +13,14 @@
     </padding>
 
     <Label fx:id="welcomeText"/>
-    <Button text="Создать случайный овощной салат " onAction="#onHelloButtonClick"/>
-    <Button text="Добавить лук" onAction="#AddOnionButtonClick"/>
-    <Button text="Добавить помидор" onAction="#addTomatoButtonClick"/>
-    <Button text="Добавить огурец" onAction="#addCucumberButtonClick"/>
-    <Button text="Сохранить в файл" onAction="#saveSaladButtonClick"/>
-    <Button text="Открыть файл" onAction="#readFileButtonClick"/>
-    <Button text="Сохранить в бинарный файл" onAction="#saveBinarSaladButtonClick"/>
-    <Button text="Открыть бинарный файл" onAction="#readBinarFileButtonClick"/>
+    <Button fx:id="onHelloButtonClick" text="Создать случайный овощной салат " onAction="#onHelloButtonClick"/>
+    <Button fx:id="AddOnionButtonClick" text="Добавить лук" onAction="#AddOnionButtonClick"/>
+    <Button fx:id="addTomatoButtonClick" text="Добавить помидор" onAction="#addTomatoButtonClick"/>
+    <Button fx:id="addCucumberButtonClick" text="Добавить огурец" onAction="#addCucumberButtonClick"/>
+    <Button fx:id="saveSaladButtonClick" text="Сохранить в файл" onAction="#saveSaladButtonClick"/>
+    <Button fx:id="readFileButtonClick" text="Открыть файл" onAction="#readFileButtonClick"/>
+    <Button fx:id="saveBinarSaladButtonClick" text="Сохранить в бинарный файл" onAction="#saveBinarSaladButtonClick"/>
+    <Button fx:id="readBinarFileButtonClick" text="Открыть бинарный файл" onAction="#readBinarFileButtonClick"/>
 
 
 </VBox>

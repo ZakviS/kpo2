@@ -5,6 +5,7 @@ import com.example.fxtest.Service.VgSaladController;
 import com.example.fxtest.model.CaloriesCounterDecorator;
 import com.example.fxtest.model.Ingredient;
 import com.example.fxtest.model.Salad;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,17 +14,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-//import org.apache.log4j.Logger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+
 
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,8 +29,39 @@ import static com.example.fxtest.Service.IngredientParser.*;
 public class VGSController {
 
     private static final Logger log = LoggerFactory.getLogger(VGSController.class);
+    @FXML
+    private Button onHelloButtonClick;
+    @FXML
+    private Button AddOnionButtonClick;
+    @FXML
+    private Button addTomatoButtonClick;
+    @FXML
+    private Button addCucumberButtonClick;
+    @FXML
+    private Button saveSaladButtonClick;
+    @FXML
+    private Button readFileButtonClick;
+    @FXML
+    private Button saveBinarSaladButtonClick;
+    @FXML
+    private Button readBinarFileButtonClick;
+    @FXML
+    private void initialize() {
+//        ResourceBundle.Control control = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+        Locale russianLocale = new Locale("ru", "RU");
+        Locale englishLocale = new Locale("en", "En");
 
+//        ResourceBundle bundle = ResourceBundle.getBundle("messages", russianLocale);
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", englishLocale);
 
+        onHelloButtonClick.setText(bundle.getString("button.createSalad"));
+        AddOnionButtonClick.setText(bundle.getString("button.addOnion"));
+        addTomatoButtonClick.setText(bundle.getString("button.addTomato"));
+        addCucumberButtonClick.setText(bundle.getString("button.addCucumber"));
+        saveSaladButtonClick.setText(bundle.getString("button.saveToFile"));
+        readFileButtonClick.setText(bundle.getString("button.openFile"));
+        saveBinarSaladButtonClick.setText(bundle.getString("button.saveToBinaryFile"));
+        readBinarFileButtonClick.setText(bundle.getString("button.openBinaryFile"));}
 
     List<Ingredient> ingredients = new ArrayList<>(); // Получите список ингредиентов
 
@@ -47,13 +75,12 @@ public class VGSController {
     VgSaladController vsc = new VgSaladController(ingredients);
 
 
-    //    VgSaladController vsc = new VgSaladController();
     private static final Pattern pattern = Pattern.compile("Name: (.*), calories: (.*), weight: (.*)");
     @FXML
     private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onHelloButtonClick(ActionEvent event) {
         welcomeText.setText(salad());
     }
 
@@ -75,8 +102,7 @@ public class VGSController {
         System.out.println(decoratedSalad.calculateCalories());
         log.info("Это выведен салат: " + vsc.getSalad());
         return vsc.printInfoString(vsc.getSalad());
-//        System.out.println("вывод через библиотеку");
-//        counter.counter((ArrayList<?>) vsc.getSalad());
+
     }
 
     @FXML
